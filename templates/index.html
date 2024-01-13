@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Speech Demo</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <h1>Text-to-Speech Demo</h1>
+    <button id="displayTextButton">Display Text</button>
+
+    <div id="displayText" style="display: none;"></div>
+
+    <script>
+        $(document).ready(function(){
+            $("#displayTextButton").click(function(){
+                // Display text on the page
+                $("#displayText").text("Hello, I am here!");
+                $("#displayText").show();
+
+                // Wait for 1 second before triggering text-to-speech
+                setTimeout(function(){
+                    // Send an AJAX request to the Flask server
+                    $.get("/text_to_speech", function(data){
+                        alert(data); // Display the response from the server
+                    });
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>
